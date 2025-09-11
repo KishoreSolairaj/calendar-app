@@ -1,0 +1,52 @@
+<div class="modal-backdrop" *ngIf="opened">
+  <div class="modal">
+    <header>
+      <h3 *ngIf="mode === 'create'">Create Event</h3>
+      <h3 *ngIf="mode === 'edit'">Edit Event</h3>
+      <button class="close-btn" (click)="close()">×</button>
+    </header>
+
+    <form [formGroup]="form" (ngSubmit)="save()">
+      <div class="form-field">
+        <label>Title</label>
+        <input formControlName="title" type="text" required />
+      </div>
+
+      <div class="form-field">
+        <label>Description</label>
+        <textarea formControlName="description"></textarea>
+      </div>
+
+      <div class="form-field">
+        <label>Date</label>
+        <input formControlName="date" type="date" required />
+      </div>
+
+      <div class="time-fields">
+        <div class="form-field">
+          <label>Start Time</label>
+          <input formControlName="startTime" type="time" />
+        </div>
+        <div class="form-field">
+          <label>End Time</label>
+          <input formControlName="endTime" type="time" />
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label>Category</label>
+        <select formControlName="category">
+          <option *ngFor="let c of categories" [value]="c.value">{{ c.label }}</option>
+        </select>
+      </div>
+
+      <footer>
+        <button type="submit" [disabled]="form.invalid" class="primary">
+          {{ mode === 'create' ? 'Create' : 'Update' }}
+        </button>
+        <button *ngIf="mode === 'edit'" type="button" class="danger" (click)="delete()">Delete</button>
+        <button type="button" (click)="close()">Cancel</button>
+      </footer>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<div class="day-cell" [class.other-month]="isOtherMonth()" (click)="openCreate()">
+  <div class="day-number">{{ dayLabel() }}</div>
+  <div class="events-list">
+    <ng-container *ngIf="events$ | async as events">
+      <div *ngFor="let e of events" class="event-pill" (click)="openEventEditor(e, $event)">
+        <span class="dot" [style.background]="categoryColor(e.category)"></span>
+        <span class="title">{{ e.title }}</span>
+      </div>
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="calendar-wrap">
+  <header class="cal-header">
+    <button class="nav" (click)="prevMonth()">Prev</button>
+    <h2>{{ formatMonth((currentDate$ | async)!) }}</h2>
+    <button class="nav" (click)="nextMonth()">Next</button>
+  </header>
+
+  <div class="weekdays">
+    <div *ngFor="let wd of ['Mon','Tue','Wed','Thu','Fri','Sat','Sun']">{{ wd }}</div>
+  </div>
+
+  <div class="months-grid">
+    <ng-container *ngFor="let week of weeks; trackBy: trackByWeek">
+      <div class="week-row">
+        <app-day-cell *ngFor="let day of week" [day]="day" [currentMonth]="(currentDate$ | async)!.getMonth()"></app-day-cell>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="loading" *ngIf="(loading$ | async)">Loading…</div>
+</div>
