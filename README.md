@@ -29,7 +29,7 @@ A modern Angular 17+ calendar app with monthly view, event creation/editing, and
 
 ##  Project Structure
 
-
+```
 calendar-app/
 ├─ src/
 │ ├─ app/
@@ -59,7 +59,7 @@ calendar-app/
 │ └─ index.html
 ├─ README.md
 └─ .gitignore
-
+```
 
 ---
 
